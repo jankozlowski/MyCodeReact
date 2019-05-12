@@ -209,7 +209,9 @@ class FullHistory extends Component {
   render() {
     return (
       <div>
+      <hr />
         <div className="row text-center">
+
           <table className="table-responsive  table-striped table-hover">
             <thead>
               <tr>
@@ -224,6 +226,7 @@ class FullHistory extends Component {
             <tfoot />
           </table>
         </div>
+        
         {this.createPagination()}
       </div>
     );

@@ -32,7 +32,7 @@ class FullLog extends Component {
 
   renderContent() {
     var projectName = "";
-    if (this.state.logJson.project === null) {
+    if (this.state.logJson.project === null || this.state.logJson.project === "") {
       projectName = "None";
     } else {
       projectName = this.state.logJson.project;
@@ -49,21 +49,39 @@ class FullLog extends Component {
     }
 
     if (this.state.logJson.charCount !== undefined) {
+
+
       return (
-        <div>
-          <h1>header</h1>
+        <div >
+
           <div className="keyboards" />
           <div hidden className="hiddenText">
             {this.makeTextFromDb()}
           </div>
-          <div>
-            <p>languages: {languages}</p>
-            <p>chars: {this.state.logJson.charSum}</p>
-            <p>time: {this.state.logJson.duration}</p>
-            <p>hour: {this.state.logJson.createdAt}</p>
-            <p>project: {projectName.name} </p>
-            <p>average pace: {this.calculateTypeRate()} chars per minute</p>
+          <br /><br />
+          <div className="row">
+          <div className="offset-2 col-4">
+          <div className="row py-2 text-center">
+            <img  src={require("../images/code.png")} alt="code" /><p className="mb-0 pt-2 px-2">Languages: {languages}</p>
+            </div><div className="row py-2">
+            <img src={require("../images/keyboardicon.png")} alt="chars" /><p className="mb-0 pt-2 px-2">Chars: {this.state.logJson.charSum}</p>
+            </div><div className="row py-2">
+            <img src={require("../images/clock.png")} alt="time" /><p className="mb-0 pt-2 px-2">Time: {this.state.logJson.duration}</p>
+            </div>
           </div>
+          <div className="offset-1">
+          </div>
+          <div className="col-4">
+          <div className="row py-2">
+          <img src={require("../images/calendar.png")} alt="calendar" /><p className="mb-0 pt-2 px-2">Date: {moment(this.state.logJson.createdAt).format("DD/MM/YYYY HH:mm:ss")}</p>
+          </div><div className="row py-2">
+            <img src={require("../images/projecticon.png")} alt="projects" /><p className="mb-0 pt-2 px-2">Project: {projectName.name} </p>
+            </div><div className="row py-2">
+            <img src={require("../images/speed.png")} alt="charbytime" /><p className="mb-0 pt-2 px-2">Average pace: {this.calculateTypeRate()} chars per minute</p>
+</div>
+            </div>
+          </div>
+          <br /><br />
         </div>
       );
     }
@@ -91,7 +109,7 @@ class FullLog extends Component {
   renderChars() {
     if (this.state.logJson.charCount !== undefined) {
       return (
-        <div className="text-center">
+        <div className="text-center bordersFullLog">
           <table className="table-responsive  table-striped table-hover">
             <thead>
               <tr>
@@ -389,7 +407,7 @@ class FullLog extends Component {
         <div>
           <div>{this.renderChars()}</div>
 
-          <div style={{ height: 600 }}>
+          <div className="bordersFullLog" style={{ height: 600 }}>
             <ResponsiveBar
               data={this.createBarChartData()}
               keys={["Char", "OtherChars"]}
@@ -490,7 +508,7 @@ class FullLog extends Component {
       var ticks = this.createTickValues(allData[0].data);
       var fuck = this.creatKeyValue(amok);
       return (
-        <div style={{ height: 600 }}>
+        <div className="bordersFullLog" style={{ height: 600 }}>
           <ResponsiveLine
             data={allData}
             margin={{
@@ -600,7 +618,7 @@ class FullLog extends Component {
       var data = this.createSecondBarChartData();
       var it = this.mapSecondsToThousends(data);
       return (
-        <div style={{ height: 400 }}>
+        <div className="bordersFullLog" style={{ height: 400 }}>
           <ResponsiveBar
             data={data}
             keys={["s"]}
@@ -690,20 +708,36 @@ class FullLog extends Component {
   }
 
   render() {
+
+    var activeTab = ["","",""];
+    if(this.state.selectedTab==1){
+      activeTab = ["active","",""];
+    }
+    else if (this.state.selectedTab==2) {
+      activeTab = ["","active",""];
+    }
+    else if (this.state.selectedTab==3){
+      activeTab = ["","","active"];
+    }
+
+
     return (
-      <div className="offset-1 col-10 fullLog">
+      <div className="offset-1 col-10 box-container py-0 px-0">
+      <h1 className="container-header text-center">Log From {moment(this.state.logJson.createdAt).format("HH:mm:ss DD/MM/YYYY")}</h1><br />
         <div>{this.renderContent()}</div>
-        <ul className="nav nav-tabs">
-          <li className="active">
+        <div className="px-4 mb-4 ">
+        <ul className="nav nav-tabs container-header statistic-navigation-borders fulllog-navigation">
+          <li className={activeTab[0]}>
             <span
               data-target="#tab1"
               data-toggle="tab"
               onClick={() => this.setTab(1)}
             >
-              Chars
+
+              Characters
             </span>
           </li>
-          <li>
+          <li className={activeTab[1]}>
             <span
               data-target="#tab1"
               data-toggle="tab"
@@ -712,18 +746,22 @@ class FullLog extends Component {
               Time
             </span>
           </li>
-          <li>
+          <li className={activeTab[2]}>
             <span
               data-target="#tab1"
               data-toggle="tab"
               onClick={() => this.setTab(3)}
             >
-              Odcinki
+              Sections
             </span>
           </li>
         </ul>
 
         {this.renderTab()}
+        <div className="container-header fullLog-bottom-borders">
+        <br />
+        </div>
+        </div>
       </div>
     );
   }

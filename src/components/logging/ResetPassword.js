@@ -57,7 +57,7 @@ class ResetPassword extends Component {
         .then(response => {
           this.setState({
             loading: false,
-            errorMessage: "ok"
+            errorMessage: "Password reset sended to mail"
           });
         });
     }
@@ -67,6 +67,7 @@ class ResetPassword extends Component {
     return (
       <div className="pattern form-margins bg-light">
         <div className="container text-center table-display">
+        <div className="box-container py-5 px-5">
           <div className="pageblock">
             <div className="formblock">
               <form className="form-signin" onSubmit={this.onSubmit}>
@@ -88,10 +89,12 @@ class ResetPassword extends Component {
                   Reset
                 </button>
               </form>
+              <p></p>
               <p>{this.state.errorMessage}</p>
               {this.renderLoading()}
             </div>
           </div>
+        </div>
         </div>
       </div>
     );

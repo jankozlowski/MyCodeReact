@@ -50,72 +50,150 @@ class Footer extends Component {
               <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5">
                 <div className="row">
                   <div className="col-sm-2 col-3 col-no-right-padding">
-                    <a href="https://www.tumblr.com">
-                      {" "}
+                    <div className="fadeCon ">
+                      <a href="https://www.tumblr.com">
+                        {" "}
+                        <img
+                          className="img-fluid fadeI"
+                          id="tumblr_icon"
+                          alt="tumblr"
+                          src={require("../images/Tumblr_icon.png")}
+                        />
+                        <img
+                          className="img-fluid fadeO"
+                          id="tumblr_icon"
+                          alt="tumblr"
+                          src={require("../images/Tumblr_icon2+.png")}
+                        />{" "}
+                      </a>
+                    </div>
+                    <div className="">
                       <img
                         className="img-fluid"
-                        id="tumblr_icon" alt="tumblr"
-                        src={require("../images/Tumblr_icon+.png")}
-                      />{" "}
-                    </a>
+                        id="tumblr_icon"
+                        alt="tumblr"
+                        src={require("../images/Tumblr_icon2+.png")}
+                      />
+                    </div>
                   </div>{" "}
                   <div className="col-sm-2 col-3  col-no-right-padding">
-                    <a href="https://www.facebook.com">
-                      {" "}
-                      <img
-                        className="img-fluid" alt="facebook"
-                        id="facebook_icon"
-                        src={require("../images/facebook+.png")}
-                      />
-                    </a>
+                    <div className="fadeCon ">
+                      <a href="https://www.facebook.com">
+                        {" "}
+                        <img
+                          className="img-fluid fadeI"
+                          alt="facebook"
+                          id="facebook_icon"
+                          src={require("../images/facebook.png")}
+                        />
+                        <img
+                          className="img-fluid fadeO"
+                          alt="facebook"
+                          id="facebook_icon"
+                          src={require("../images/facebook2+.png")}
+                        />
+                      </a>
+                    </div>
                   </div>{" "}
                   <div className="col-sm-2 col-3  col-no-right-padding">
-                    <a href="https://twitter.com">
-                      {" "}
-                      <img
-                        className="img-fluid" alt="twitter"
-                        id="twitter_icon"
-                        src={require("../images/Twitter-icon+.png")}
-                      />
-                    </a>
+                    <div className="fadeCon ">
+                      <a href="https://twitter.com">
+                        {" "}
+                        <img
+                          className="img-fluid fadeI"
+                          alt="twitter"
+                          id="twitter_icon"
+                          src={require("../images/Twitter-icon.png")}
+                        />
+                        <img
+                          className="img-fluid fadeO"
+                          alt="twitter"
+                          id="twitter_icon"
+                          src={require("../images/Twitter-icon2+.png")}
+                        />
+                      </a>
+                    </div>
                   </div>{" "}
                   <div className="col-sm-2 col-3  col-no-right-padding">
-                    <a href="https://plus.google.com">
-                      {" "}
-                      <img
-                        className="img-fluid" alt="google"
-                        id="google_icon"
-                        src={require("../images/google_plus+.png")}
-                      />
-                      <br />
-                    </a>
+                    <div className="fadeCon ">
+                      <a href="https://plus.google.com">
+                        {" "}
+                        <img
+                          className="img-fluid fadeI"
+                          alt="google"
+                          id="google_icon"
+                          src={require("../images/google_plus.png")}
+                        />
+                        <img
+                          className="img-fluid fadeO"
+                          alt="google"
+                          id="google_icon"
+                          src={require("../images/google_plus2+.png")}
+                        />
+                        <br />
+                      </a>
+                    </div>
                   </div>
                 </div>
                 <div className="row">
                   <div className="col-12 col-sm-9">
-                    <a href="https://play.google.com/store/apps/developer?id=TwistedGenius">
-                      {" "}
+                    <div className="fadeCon ">
+                      <a href="https://play.google.com/store/apps/">
+                        {" "}
+                        <img
+                          className="img-fluid fadeI"
+                          alt="app"
+                          id="google_app_icon"
+                          src={require("../images/googleplay.png")}
+                        />
+                        <img
+                          className="img-fluid fadeO"
+                          alt="app"
+                          id="google_app_icon"
+                          src={require("../images/googleplay2+.png")}
+                        />
+                      </a>
+                    </div>
+                    <div className="">
                       <img
-                        className="img-fluid" alt="app"
+                        className="img-fluid"
+                        alt="app"
                         id="google_app_icon"
-                        src={require("../images/googleplay+.png")}
+                        src={require("../images/googleplay2+.png")}
                       />
-                    </a>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">
-                <a href="/">
-                  {" "}
+
+                <div className="fadeCon ">
+                  <a href="/">
+                    {" "}
+                    <img
+                      className="img-fluid fadeI"
+                      alt="logo"
+                      id="google_app_icon"
+                      src={require("../images/timelogo.png")}
+                    />
+                    <img
+                      className="img-fluid fadeO"
+                      alt="logo"
+                      id="google_app_icon"
+                    src={require("../images/timelogo2+.png")}
+                    />
+                  </a>
+                </div>
+                <div className="">
                   <img
-                    className="img-fluid" alt="logo"
-                    id="footer_logo"
-                    onClick={() => this.getApiData()}
-                    src={require("../images/timelogo+.png")}
+                    className="img-fluid"
+                    alt="logo"
+                    id="google_app_icon"
+                    src={require("../images/timelogo2+.png")}
                   />
-                </a>
-              </div>
+                </div>
+            </div>
 
               <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 text-center">
                 <p className="fluid-font">
@@ -133,14 +211,31 @@ class Footer extends Component {
               </div>
 
               <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">
+              <div className="fadeCon ">
                 <a href="http://binaryalchemist.pl">
                   {" "}
                   <img
-                    id="blog_logo" alt="blog"
-                    src={require("../images/logo+.png")}
-                    className="img-fluid"
+                    className="img-fluid fadeI"
+                    alt="logo"
+                    id="google_app_icon"
+                    src={require("../images/logo.png")}
+                  />
+                  <img
+                    className="img-fluid fadeO"
+                    alt="logo"
+                    id="google_app_icon"
+                  src={require("../images/logo2+.png")}
                   />
                 </a>
+              </div>
+              <div className="">
+                <img
+                  className="img-fluid"
+                  alt="logo"
+                  id="google_app_icon"
+                  src={require("../images/logo2+.png")}
+                />
+              </div>
               </div>
             </div>
           </div>

@@ -53,7 +53,7 @@ class TaskCell extends Component {
           );
         }}
         className="px-2"
-        src={require("../../images/magic-wand.png")} alt="selected"
+        src={require("../../images/cursor.png")} alt="selected"
       />)
     }
   }
@@ -66,12 +66,20 @@ class TaskCell extends Component {
     }
 
     var compleatedCSS = "";
+    var compleatedCSSText = "";
     if (this.props.data.compleated) {
       compleatedCSS = "projectCompleated";
+      compleatedCSSText = "projectCompleatedText";
     }
+    var addCSS = "";
+    if (this.props.data.name === "Add") {
+      addCSS = "addCell";
+    }
+
+
     return (
       <div>
-        <div className={"infinity-menu-node-container " + selectedCSS}>
+        <div className={"infinity-menu-node-container " + selectedCSS + " " +compleatedCSS }>
         <div className="projectCellDivRight">
 
           {this.renderSelectImage()}
@@ -97,7 +105,7 @@ class TaskCell extends Component {
             key={this.props.key}
             onClick={this.props.onClick}
           >
-            <label className={"" + compleatedCSS}>{this.props.name}</label>
+            <label className={compleatedCSSText}>{this.props.name}</label>
           </div>
 
         </div>

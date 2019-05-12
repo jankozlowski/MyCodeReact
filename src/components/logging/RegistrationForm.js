@@ -87,7 +87,9 @@ class RegistrationForm extends Component {
     if (this.state.sucess === false) {
       return (
         <div className="pattern">
+
           <div className="container text-center table-display">
+          <div className="box-container py-5 px-5">
             <div className="pageblock">
               <div className="formblock">
                 <form
@@ -95,7 +97,7 @@ class RegistrationForm extends Component {
                   className="form-signin"
                   onSubmit={this.onSubmit}
                 >
-                  <h1 className="form-heading">Create your account</h1>
+                  <h1 className="form-heading ">Create your account</h1>
                   <div className="form-group">
                     <input
                       type="text"
@@ -154,6 +156,7 @@ class RegistrationForm extends Component {
               </div>
             </div>
           </div>
+          </div>
         </div>
       );
     }
@@ -162,8 +165,8 @@ class RegistrationForm extends Component {
     if (this.state.sucess === true) {
       return (
         <div className="container-fluid">
-          <div className="d-flex justify-content-center border border-primary">
-            <p>
+          <div className="d-flex justify-content-center border border-primary box-container">
+            <p className="responseText">
               The account was created successfully. To email address you have
               provided a confirmation mail has been sent. Please click on
               received link to activate the account.

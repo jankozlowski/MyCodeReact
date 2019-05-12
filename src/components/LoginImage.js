@@ -2,11 +2,20 @@ import React, { Component } from "react";
 
 class LoginImage extends Component {
   renderImage() {
+
+    const hrFullScreen = {
+      width: 5000
+    };
+
     if (localStorage.getItem("isLogged") === "false") {
       return (
         <div className="container-fluid">
+        <div className="row">
+          <hr style={hrFullScreen}/>
+        </div>
           <div className="row">
             <div className="col-lg-12 text-center p-0 d-flex align-items-center ">
+
               <img ant="robot"
                 className="img-fluid position-relative mx-auto"
                 src={require("../images/robot.jpg")}
@@ -20,7 +29,7 @@ class LoginImage extends Component {
                 <br />
                 <br />
                 <a
-                  className="btn  btn-primary btn-block text-white-normal"
+                  className="btn  btn-primary btn-block text-white-normal "
                   href="/registration"
                 >
                   Register

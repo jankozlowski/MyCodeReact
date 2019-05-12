@@ -50,7 +50,9 @@ class UserValidation extends Component {
   render() {
     return (
       <div className="container">
-        <p>{this.state.errorMessage}</p>
+      <div className="d-flex justify-content-center border border-primary box-container">
+        <p className="responseText">{this.state.errorMessage}</p>
+        </div>
       </div>
     );
   }

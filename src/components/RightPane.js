@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MonthHistory from "./cell/MonthHistory";
 import SocialMedia from "./SocialMedia";
+import DownloadJar from "./DownloadJar";
 import AdSense from "react-adsense";
 import CurrentProject from "./cell/CurrentProject"
 
@@ -11,7 +12,7 @@ class RightPane extends Component {
       <CurrentProject />
         <MonthHistory />
         <SocialMedia />
-        <img className="img-fluid" src={require("../images/money.jpg")} alt="ad" />
+        <DownloadJar />
         <p></p><p></p>
       </div>
     );

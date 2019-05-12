@@ -56,7 +56,7 @@ class ResetValidation extends Component {
         .then(response => {
           this.setState({
             loading: false,
-            errorMessage: "ok"
+            errorMessage: "Validation sended to email"
           });
         });
     }
@@ -66,6 +66,7 @@ class ResetValidation extends Component {
     return (
       <div className="pattern form-margins bg-light">
         <div className="container text-center table-display">
+        <div className="box-container py-5 px-5">
           <div className="pageblock">
             <div className="formblock">
               <form className="form-signin" onSubmit={this.onSubmit}>
@@ -87,10 +88,12 @@ class ResetValidation extends Component {
                   Resend
                 </button>
               </form>
+              <p></p>
               <p>{this.state.errorMessage}</p>
               {this.renderLoading()}
             </div>
           </div>
+        </div>
         </div>
       </div>
     );

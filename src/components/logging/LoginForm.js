@@ -87,6 +87,7 @@ class LoginForm extends Component {
     return (
       <div className="pattern form-margins bg-light">
         <div className="container text-center table-display">
+        <div className="box-container py-5 px-5">
           <div className="pageblock">
             <div className="formblock">
               <form
@@ -133,7 +134,9 @@ class LoginForm extends Component {
                 <h6 className="text-center">
                   <a href="/registration">Create an account</a>
                 </h6>
+                <p>Demo account - username:demo password:demo</p> 
               </form>
+            </div>
             </div>
           </div>
         </div>

@@ -14,6 +14,8 @@ class SocialMedia extends Component {
         true,
         false,
         true,
+        false,
+        true,
         false
       ]
     };
@@ -44,14 +46,7 @@ class SocialMedia extends Component {
         <h5 className="container-header">See also</h5>
         <div>
           <div className="row">
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+
             <div className="fadeContainer ">
               <div>
                 <a href="http://binaryalchemist.pl">
@@ -79,16 +74,20 @@ class SocialMedia extends Component {
                 </a>
               </div>
             </div>
+            <div className="fadeContainer ">
+
+            <img
+              className={
+                "img-fluid socialMediaImage"
+              }
+              href="http://binaryalchemist.pl"
+              src={require("../images/empty.png")}
+              alt="binaryalchemist"
+            />
+            </div>
           </div>
           <div className="row">
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+
             <div className="fadeContainer ">
               <div>
                 <a href="https://twitter.com">
@@ -116,16 +115,20 @@ class SocialMedia extends Component {
                 </a>
               </div>
             </div>
+            <div className="fadeContainer ">
+
+            <img
+              className={
+                "img-fluid socialMediaImage"
+              }
+              href="http://binaryalchemist.pl"
+              src={require("../images/empty.png")}
+              alt="binaryalchemist"
+            />
+            </div>
           </div>
           <div className="row">
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+
             <div className="fadeContainer ">
               <div>
                 <a href="https://www.facebook.com">
@@ -153,19 +156,23 @@ class SocialMedia extends Component {
                 </a>
               </div>
             </div>
+            <div className="fadeContainer ">
+
+            <img
+              className={
+                "img-fluid socialMediaImage"
+              }
+              href="http://binaryalchemist.pl"
+              src={require("../images/empty.png")}
+              alt="binaryalchemist"
+            />
+            </div>
           </div>
           <div className="row">
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+
             <div className="fadeContainer ">
               <div>
-                <a href="http://binaryalchemist.pl">
+                <a href="https://plus.google.com">
                   <img
                     className={
                       "img-fluid socialMediaImage " +
@@ -175,7 +182,7 @@ class SocialMedia extends Component {
                     alt="google_plus"
                   />
                 </a>
-                <a href="http://binaryalchemist.pl">
+                <a href="https://plus.google.com">
                   <img
                     className={
                       "img-fluid socialMediaImage " +
@@ -190,25 +197,34 @@ class SocialMedia extends Component {
                 </a>
               </div>
             </div>
+            <div className="fadeContainer ">
+
+            <img
+              className={
+                "img-fluid socialMediaImage"
+              }
+              href="http://binaryalchemist.pl"
+              src={require("../images/empty.png")}
+              alt="binaryalchemist"
+            />
+            </div>
           </div>
-          <br />
-          <br />
+
           <div className="row">
-            <br />
-            <br />
+
             <div className="fadeContainer ">
               <div>
-                <a href="http://binaryalchemist.pl">
+                <a href="https://www.tumblr.com">
                   <img
                     className={
                       "img-fluid socialMediaImage " +
                       (this.state.fadeArray[8] ? "fadeIn" : "fadeOut")
                     }
-                    src={require("../images/googleplay+.png")}
-                    alt="binaryalchemist"
+                    src={require("../images/Tumblr_icon+.png")}
+                    alt="tumblr"
                   />
                 </a>
-                <a href="http://binaryalchemist.pl">
+                <a href="https://www.tumblr.com">
                   <img
                     className={
                       "img-fluid socialMediaImage " +
@@ -216,12 +232,66 @@ class SocialMedia extends Component {
                     }
                     onMouseOver={() => this.fadeImagesIn(8, 9)}
                     onMouseOut={() => this.fadeImagesOut(8, 9)}
+                    href="https://www.tumblr.com"
+                    src={require("../images/Tumblr_icon.png")}
+                    alt="tumblr"
+                  />
+                </a>
+              </div>
+            </div>
+            <div className="fadeContainer ">
+
+            <img
+              className={
+                "img-fluid socialMediaImage"
+              }
+              href="http://binaryalchemist.pl"
+              src={require("../images/empty.png")}
+              alt="binaryalchemist"
+            />
+            </div>
+          </div>
+<br />
+          <div className="row">
+            <br />
+            <br />
+            <div className="fadeContainer ">
+              <div>
+                <a href="https://play.google.com/store/apps/">
+                  <img
+                    className={
+                      "img-fluid socialMediaImage " +
+                      (this.state.fadeArray[10] ? "fadeIn" : "fadeOut")
+                    }
+                    src={require("../images/googleplay+.png")}
+                    alt="binaryalchemist"
+                  />
+                </a>
+                <a href="https://play.google.com/store/apps/">
+                  <img
+                    className={
+                      "img-fluid socialMediaImage " +
+                      (this.state.fadeArray[11] ? "fadeIn" : "fadeOut")
+                    }
+                    onMouseOver={() => this.fadeImagesIn(10, 11)}
+                    onMouseOut={() => this.fadeImagesOut(10, 11)}
                     href="http://binaryalchemist.pl"
                     src={require("../images/googleplay.png")}
                     alt="binaryalchemist"
                   />
                 </a>
               </div>
+            </div>
+            <div className="fadeContainer d-block d-xl-none ">
+
+            <img
+              className={
+                "img-fluid socialMediaImage"
+              }
+              href="http://binaryalchemist.pl"
+              src={require("../images/empty.png")}
+              alt="binaryalchemist"
+            />
             </div>
           </div>
           <br />

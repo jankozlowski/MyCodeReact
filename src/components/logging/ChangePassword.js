@@ -76,7 +76,7 @@ class ChangePassword extends Component {
           this.setState({
             loading: false,
             sucess: true,
-            errorMessage: "ok"
+            errorMessage: "Password Changed"
           });
         });
     }
@@ -93,6 +93,7 @@ class ChangePassword extends Component {
       return (
         <div className="pattern form-margins bg-light">
           <div className="container text-center table-display">
+          <div className="box-container py-5 px-5">
             <div className="pageblock">
               <div className="formblock">
                 <form className="form-signin" onSubmit={this.onSubmit}>
@@ -126,6 +127,7 @@ class ChangePassword extends Component {
                 </form>{" "}
               </div>
             </div>
+            </div>
           </div>
         </div>
       );
@@ -137,7 +139,9 @@ class ChangePassword extends Component {
       <div className="container-fluid">
         {this.renderForm()}
         {this.renderLoading()}
-        <p>{this.state.errorMessage}</p>
+        <div className="d-flex justify-content-center border border-primary box-container">
+          <p className="responseText">{this.state.errorMessage}</p>
+        </div>
       </div>
     );
   }

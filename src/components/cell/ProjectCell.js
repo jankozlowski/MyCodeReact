@@ -49,13 +49,20 @@ class ProjectCell extends Component {
       selectedCSS = "projectSelected";
     }
     var compleatedCSS = "";
+    var compleatedCSSText = "";
     if (this.props.data.compleated) {
       compleatedCSS = "projectCompleated";
+      compleatedCSSText = "projectCompleatedText";
+    }
+    var addCSS = "";
+    if (this.props.data.name === "Add") {
+      addCSS = "addCell";
     }
 
+
     return (
-      <div>
-        <div className={"infinity-menu-node-container " + selectedCSS}>
+      <div className={compleatedCSS}>
+        <div className={"infinity-menu-node-container " + selectedCSS +" " + compleatedCSS + " " + addCSS}>
         <div className="projectCellDivRight">
           <img
             onClick={() => {
@@ -64,7 +71,7 @@ class ProjectCell extends Component {
               );
             }}
             className="px-2"
-            src={require("../../images/magic-wand.png")} alt="select"
+            src={require("../../images/cursor.png")} alt="select"
           />
           <img
             onClick={() => {
@@ -87,9 +94,8 @@ class ProjectCell extends Component {
           //  key={this.props.key}
             onClick={this.props.onClick}
           >
-            <label className={"" + compleatedCSS}>{this.props.name}</label>
+            <label className={compleatedCSSText}>{this.props.name}</label>
           </div>
-
         </div>
         <Popup
           open={this.state.openDelete}

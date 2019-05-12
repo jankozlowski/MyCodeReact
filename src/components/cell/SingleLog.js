@@ -37,6 +37,18 @@ class SingleLog extends Component {
       return moment(this.props.createdAt).format("YYYY-MM-DD HH:mm:ss");
     }
   }
+  calculateTypeRate() {
+    var time = this.props.duration.substr(
+      0,
+      this.props.duration.length - 4
+    );
+    var tt = time.split(":");
+    var sec = tt[0] * 3600 + tt[1] * 60 + tt[2] * 1;
+
+    var rate = Math.round(this.props.charSum / (sec / 60));
+
+    return rate;
+  }
 
   render() {
     var durationWithoutMilis = this.props.duration.substring(
@@ -84,7 +96,7 @@ class SingleLog extends Component {
             <div className="row row-fluid py-time justify-content-end">
               {durationWithoutMilis}
             </div>
-            <div className="row row-fluid py-4 justify-content-end">0 </div>
+            <div className="row row-fluid py-4 justify-content-end">{this.calculateTypeRate()}</div>
           </div>
           <div className="col-2 my-2 ">
             <img
