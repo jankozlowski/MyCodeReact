@@ -13,8 +13,12 @@ import UserPanel from "./components/UserPanel"
 import FullLog from "./components/FullLog"
 import FullHistory from "./components/FullHistory"
 import Projects from "./components/Projects"
+import Materials from "./components/Materials"
+import Settings from "./components/Settings"
+import BooksComponent from "./components/books/BooksComponent"
 import FutureComponent from "./components/FutureComponent"
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import PrivateRoute from "./components/PrivateRoute"
 import "./css/bootstrap.min.css"
 import "./css/main.css"
 import "./css/style.css"
@@ -30,31 +34,6 @@ class App extends Component {
       }
   }
 
-/*this.loadCurrentUser = this.loadCurrentUser.bind(this);
-
-
-  loadCurrentUser() {
-      this.setState({
-        isLoading: true
-      });
-      getCurrentUser()
-      .then(response => {
-        this.setState({
-          currentUser: response,
-          isAuthenticated: true,
-          isLoading: false
-        });
-      }).catch(error => {
-        this.setState({
-          isLoading: false
-        });
-      });
-    }
-
-    componentDidMount() {
-      this.loadCurrentUser();
-    }*/
-
   render() {
     return (
         <Router>
@@ -69,13 +48,15 @@ class App extends Component {
             <Route exact path="/resetValidation" component={ResetValidation} />
             <Route exact path="/resetPassword" component={ResetPassword} />
             <Route exact path="/changePassword" component={ChangePassword} />
-            <Route path="/log" component={FullLog} />
-            <Route path="/history" component={FullHistory} />
-            <Route path="/projects" component={Projects} />
-            <Route path="/books" component={FutureComponent} />
-            <Route path="/materials" component={FutureComponent} />
-            <Route path="/add" component={FutureComponent} />
-            <Route path="/settings" component={FutureComponent} />
+
+            <PrivateRoute path="/log" component={FullLog} />
+            <PrivateRoute path="/history" component={FullHistory} />
+            <PrivateRoute path="/projects" component={Projects} />
+            <PrivateRoute path="/books" component={BooksComponent} />
+            <PrivateRoute path="/materials" component={Materials} />
+            <PrivateRoute path="/add" component={FutureComponent} />
+            <PrivateRoute path="/settings" component={Settings} />
+
             <Footer />
 
           </div>

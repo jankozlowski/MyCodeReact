@@ -710,13 +710,13 @@ class FullLog extends Component {
   render() {
 
     var activeTab = ["","",""];
-    if(this.state.selectedTab==1){
+    if(this.state.selectedTab===1){
       activeTab = ["active","",""];
     }
-    else if (this.state.selectedTab==2) {
+    else if (this.state.selectedTab===2) {
       activeTab = ["","active",""];
     }
-    else if (this.state.selectedTab==3){
+    else if (this.state.selectedTab===3){
       activeTab = ["","","active"];
     }
 

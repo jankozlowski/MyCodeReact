@@ -3,6 +3,9 @@ import React, { Component } from "react";
 class FutureComponent extends Component {
 
 
+
+
+
   render() {
 
     const pStyle = {
@@ -17,7 +20,7 @@ class FutureComponent extends Component {
         <div className="container" ><div className="row" >
           <div  className="col-12 py-4">
             <div className="box-container text-center"><img className="img-fluid" src={require("../images/development.png")} /><h2>IN PROGRESS</h2><p>This feature is under development and
-will be added in near future</p></div>
+will be added in future</p></div>
           </div>
         </div></div>
       </div>

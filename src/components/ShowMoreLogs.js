@@ -36,7 +36,7 @@ class ShowMoreLogs extends Component {
   render() {
     return (
       <div>
-        {this.renderLoading()} {this.renderContent()}{" "}
+         {this.renderContent()}{" "}
       </div>
     );
   }

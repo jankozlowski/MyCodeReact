@@ -1,7 +1,19 @@
 import React, { Component } from "react";
 import moment from "moment";
+import { API_BASE_URL } from "../../constants";
+import { ACCESS_TOKEN } from "../../constants";
+import axios from "axios";
+import Popup from "reactjs-popup";
+import "../../css/modal.css";
 
 class SingleLog extends Component {
+  constructor() {
+    super();
+    this.state = {
+      deletePopupOpen: false
+    };
+  }
+
   makeTextFromDb() {
     var text = "";
 
@@ -38,16 +50,59 @@ class SingleLog extends Component {
     }
   }
   calculateTypeRate() {
-    var time = this.props.duration.substr(
-      0,
-      this.props.duration.length - 4
-    );
+    var time = this.props.duration.substr(0, this.props.duration.length - 4);
     var tt = time.split(":");
     var sec = tt[0] * 3600 + tt[1] * 60 + tt[2] * 1;
 
     var rate = Math.round(this.props.charSum / (sec / 60));
 
     return rate;
+  }
+
+
+  deleteLogOnServer() {
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + localStorage.getItem(ACCESS_TOKEN);
+
+    axios
+      .delete(
+        API_BASE_URL +
+          "api/log/delete/" +
+          this.props.logId
+      )
+      .catch(error => {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+        } else if (error.request) {
+          console.log(error.request);
+        } else {
+          console.log("Error", error.message);
+        }
+      })
+      .then(response => {
+
+      });
+  }
+
+  deleteLog() {
+    this.deleteLogOnServer();
+    this.props.deleteLogFromJson(this.props.logId);
+
+  }
+
+  changePopupState() {
+    if(this.state.deletePopupOpen){
+      this.setState({
+        deletePopupOpen:false
+      })
+    }
+    else{
+      this.setState({
+        deletePopupOpen:true
+      })
+    }
+
   }
 
   render() {
@@ -70,6 +125,14 @@ class SingleLog extends Component {
           </a>
           <br />
         </p>
+        <div>
+          <img
+            className="logcell-delete float-right"
+            src={require("../../images/redx.png")}
+            alt="x"
+            onClick={this.changePopupState.bind(this)}
+          />
+        </div>
         <div className="container-content ml-3">
           <img
             className="mr-2"
@@ -96,7 +159,9 @@ class SingleLog extends Component {
             <div className="row row-fluid py-time justify-content-end">
               {durationWithoutMilis}
             </div>
-            <div className="row row-fluid py-4 justify-content-end">{this.calculateTypeRate()}</div>
+            <div className="row row-fluid py-4 justify-content-end">
+              {this.calculateTypeRate()}
+            </div>
           </div>
           <div className="col-2 my-2 ">
             <img
@@ -118,6 +183,44 @@ class SingleLog extends Component {
             />
           </div>
         </div>
+        <Popup
+          open={this.state.deletePopupOpen}
+          closeOnDocumentClick
+          onClose={this.change}
+        >
+          {close => (
+            <div className="popupModal">
+              <a className="close" onClick={this.changePopupState.bind(this)}>
+                &times;
+              </a>
+              <div className="content">
+                Are you sure you want to delete this log? (This action canot be undone)
+              </div>
+              <div className="actions">
+                <button
+                  className="button"
+                  onClick={() => {
+                    this.changePopupState();
+                    this.deleteLog();
+
+                    close();
+                  }}
+                >
+                  YES
+                </button>
+                <button
+                  className="button"
+                  onClick={() => {
+                    this.changePopupState();
+                    close();
+                  }}
+                >
+                  NO
+                </button>
+              </div>
+            </div>
+          )}
+        </Popup>
       </div>
     );
   }

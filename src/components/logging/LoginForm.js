@@ -134,7 +134,7 @@ class LoginForm extends Component {
                 <h6 className="text-center">
                   <a href="/registration">Create an account</a>
                 </h6>
-                <p>Demo account - username:demo password:demo</p> 
+                <p>Demo account - username:demo password:demo</p>
               </form>
             </div>
             </div>

@@ -16,6 +16,8 @@ class Statistics extends Component {
   }
 
   getStatistics() {
+console.log(API_BASE_URL + "api/statistics/"+localStorage.getItem("userName")+"/" + this.state.selectedStatistics);
+
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + localStorage.getItem(ACCESS_TOKEN);
 
@@ -122,9 +124,9 @@ class Statistics extends Component {
             }}
             legends={[
               {
-                anchor: "top",
+                anchor: "left",
                 direction: "row",
-                translateY: 0,
+                translateY: -84,
                 itemWidth: 0,
                 itemHeight: 0,
                 itemTextColor: "#FFF",

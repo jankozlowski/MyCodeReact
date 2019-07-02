@@ -5,7 +5,7 @@
   height: 373px;
   bottom: 0;
   padding: 0;
-  background-image: url(http://localhost:8080/img/QWERTY.png);
+  background-image: url(https://projectmycode.herokuapp.com/img/QWERTY.png);
 }
 .smallkeyboards{
   position: relative;

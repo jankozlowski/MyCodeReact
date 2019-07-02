@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { ACCESS_TOKEN } from "../constants";
 import { API_BASE_URL } from "../constants";
+import { Loader } from "react-overlay-loader";
+import "react-overlay-loader/styles.css";
 import axios from "axios";
 import moment from "moment";
 import uniqueid from "uniqid";
+import Pagination from "./Pagination";
 
 class FullHistory extends Component {
   constructor() {
@@ -11,8 +14,11 @@ class FullHistory extends Component {
     this.state = {
       logJson: [],
       logCount: 1,
-      selectedPage: 1
+      selectedPage: 1,
+      loading: true
     };
+    this.getLogData = this.getLogData.bind(this);
+    this.pageClicked = this.pageClicked.bind(this);
   }
 
   getLogData(page) {
@@ -33,6 +39,7 @@ class FullHistory extends Component {
       })
       .then(response => {
         this.setState({
+          loading: false,
           logJson: response.data.content
         });
       });
@@ -81,13 +88,13 @@ class FullHistory extends Component {
 
 
     if (json.language.length === 1) {
-      return <img src={API_BASE_URL + "api/file/downloadFile/"+localStorage.getItem("userName")+"/" + this.getNamepart(json.language[0].location)} width="26" height="26" alt="language" />
+      return <img className="historyImageMargin" src={API_BASE_URL + "api/file/downloadFile/"+localStorage.getItem("userName")+"/" + this.getNamepart(json.language[0].location)} width="26" height="26" alt="language" />
     }
     else{
       var data = [];
 
       for (var i = 0; i < json.language.length; i++) {
-        data.push(<img key={uniqueid()} src={API_BASE_URL + "api/file/downloadFile/"+localStorage.getItem("userName")+"/" + this.getNamepart(json.language[i].location)} width="26" height="26"  alt="language" />);
+        data.push(<img className="historyImageMargin" key={uniqueid()} src={API_BASE_URL + "api/file/downloadFile/"+localStorage.getItem("userName")+"/" + this.getNamepart(json.language[i].location)} width="26" height="26"  alt="language" />);
       }
       return data;
     }
@@ -121,15 +128,18 @@ class FullHistory extends Component {
   renderTableValues() {
     var data = [];
 
+
+
     if (this.state.logJson[0] !== undefined) {
       for (var i = 0; i < this.state.logJson.length; i++) {
+
         data.push(
           <tr key={uniqueid()}>
             <td>{this.showLanguageIcons(this.state.logJson[i])}{this.showLanguage(this.state.logJson[i])}</td>
-            <td>
+            <td><a href={"http://localhost:3000/log/" + this.state.logJson[i].logId}>
               {moment(this.state.logJson[i].createdAt).format(
                 "YYYY-MM-DD HH:mm:ss"
-              )}
+              )}</a>
             </td>
             <td>{this.showProjectName(this.state.logJson[i])}</td>
             <td>{this.state.logJson[i].charSum}</td>
@@ -146,65 +156,21 @@ class FullHistory extends Component {
     this.getLogSize();
   }
 
-  setPageValue(page){
-
-    this.setState({
+  pageClicked(page) {
+      this.setState({
+      loading:true,
       selectedPage: page
     })
     this.getLogData(page);
   }
 
-  createPagination() {
-    var data = [];
-    var pages = Math.ceil(this.state.logCount / 20);
-    var active ="";
-    var disablePrev = "";
-    var disableNext = ""
-
-    if(this.state.selectedPage===1){
-      disablePrev = "disabled";
+  renderLoading() {
+    if (this.state.loading === true) {
+      return <Loader fullPage loading />;
     }
-    if(this.state.selectedPage===pages){
-      disableNext = "disabled";
-    }
-
-    for (var i = 0; i < pages; i++) {
-
-      if(this.state.selectedPage === i+1){
-        active = "active";
-      }
-      else{
-        active ="";
-      }
-
-      data.push(
-        <li key={uniqueid()} className={"page-item " + active} >
-          <a className="page-link" onClick = {this.setPageValue.bind(this, i+1) }>
-            {i+1}
-          </a>
-        </li>
-      );
-    }
-    return (
-      <div className="row justify-content-around py-3">
-        <nav aria-label="Page navigation example ">
-          <ul className="pagination">
-            <li className={"page-item " + disablePrev}>
-              <a className="page-link" onClick = {this.setPageValue.bind(this, this.state.selectedPage - 1) }>
-                Previous
-              </a>
-            </li>
-            {data}
-            <li className={"page-item " + disableNext}>
-              <a className="page-link" onClick = {this.setPageValue.bind(this, this.state.selectedPage + 1) }>
-                Next
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    );
   }
+
+
 
   render() {
     return (
@@ -212,7 +178,7 @@ class FullHistory extends Component {
       <hr />
         <div className="row text-center">
 
-          <table className="table-responsive  table-striped table-hover">
+          <table className="table-responsive table-striped table-hover">
             <thead>
               <tr>
                 <td>Languages:</td>
@@ -226,8 +192,10 @@ class FullHistory extends Component {
             <tfoot />
           </table>
         </div>
-        
-        {this.createPagination()}
+
+        <Pagination itemCount={this.state.logCount} selectedPage={this.state.selectedPage} pageClicked={this.pageClicked}/>
+
+        {this.renderLoading()}
       </div>
     );
   }

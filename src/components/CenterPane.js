@@ -16,15 +16,39 @@ class CenterPane extends Component {
       loading: true,
       loaded: false
     };
+    this.deleteLogFromJson = this.deleteLogFromJson.bind(this);
+  }
 
+  deleteLogFromJson(id) {
+    var newArr = this.state.logJson;
+    for (var index = 0; index < this.state.logJson.content.length; index++) {
+
+      if ((newArr.content[index].logId === id)) {
+        console.log("id "+id);
+        console.log("index "+index);
+        console.log("newarr "+newArr.content[index].logId);
+        newArr.content.splice(index, 1);
+        break;
+      }
+    }
+    this.setState({
+      logJson: newArr
+    });
+    this.scriptLoaded();
   }
 
   getLogData(page) {
-
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + localStorage.getItem(ACCESS_TOKEN);
     axios
-      .get(API_BASE_URL + "api/log/"+localStorage.getItem("userName")+"/page/" + page+"/10")
+      .get(
+        API_BASE_URL +
+          "api/log/" +
+          localStorage.getItem("userName") +
+          "/page/" +
+          page +
+          "/10"
+      )
       .catch(error => {
         if (error.response) {
           console.log(error.response.data);
@@ -36,7 +60,6 @@ class CenterPane extends Component {
         }
       })
       .then(response => {
-
         if (page !== 0) {
           var oldContent = this.state.logJson;
           var newData = response.data;
@@ -45,32 +68,34 @@ class CenterPane extends Component {
           for (var i = 0; i < endPoint; i++) {
             oldContent["content"].push(newData["content"][i]);
           }
-          this.setState({
-            logJson: oldContent,
-            page: page,
-            loading: false,
-            last: newData["last"]
-          },this.scriptLoaded());
+          this.setState(
+            {
+              logJson: oldContent,
+              page: page,
+              loading: false,
+              last: newData["last"]
+            },
+            this.scriptLoaded()
+          );
         } else {
-          this.setState({
-            logJson: response.data,
-            loading: false,
-            last: response.data.last
-          },this.scriptLoaded());
+          this.setState(
+            {
+              logJson: response.data,
+              loading: false,
+              last: response.data.last
+            },
+            this.scriptLoaded()
+          );
         }
-
       });
   }
 
   moreLogsClick() {
-
     this.setState(state => ({
       loading: true
     }));
 
     this.getLogData(this.state.page + 1);
-
-
   }
 
   handleClickMoreLogs = () => this.moreLogsClick();
@@ -81,17 +106,24 @@ class CenterPane extends Component {
 
   scriptLoaded() {
     const script3 = document.createElement("script");
-      script3.src = API_BASE_URL + "js/keyboardheatmap-small.js";
-      script3.async = true;
-      script3.onload = () => this.scriptLoaded2();
-      document.body.appendChild(script3);
+    script3.src = API_BASE_URL + "js/keyboardheatmap-small.js";
+    script3.async = true;
+    script3.onload = () => this.scriptLoaded2();
+    document.body.appendChild(script3);
   }
   scriptLoaded2() {
     window.heatmapCreate();
   }
 
-  renderContent(response) {
+  renderLoading() {
+    return (
+      <div className="text-center my-4">
+        <img alt="loading" src={require("../images/loading.gif")} />
+      </div>
+    );
+  }
 
+  renderContent(response) {
     if (response["content"] === undefined) {
       return;
     }
@@ -113,30 +145,34 @@ class CenterPane extends Component {
             duration={item.duration}
             createdAt={item.createdAt}
             language={item.language}
+            deleteLogFromJson={this.deleteLogFromJson}
           />
         ))}
         <ShowMoreLogs
           last={this.state.last}
           handleClick={this.handleClickMoreLogs}
           loading={this.state.loading}
-        /><div></div>
+        />
+        <div />
       </div>
     );
   }
 
   render() {
+    console.log(this.state.logJson);
     let loaded = false;
     if (this.state.logJson !== null) {
       loaded = true;
     }
 
     return (
-      <div className="col-xl-5 col-lg-6 " >
+      <div className="col-xl-5 col-lg-6 ">
         {loaded
           ? this.renderContent(this.state.logJson)
           : this.renderContent("")}
-      </div>
 
+        {this.state.loading ? this.renderLoading() : this.renderContent("")}
+      </div>
     );
   }
 }
