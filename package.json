@@ -7,7 +7,7 @@
     "@nivo/line": "^0.55.0",
     "@nivo/pie": "^0.54.0",
     "@nivo/radar": "^0.55.0",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
     "mgr-pdf-viewer-react": "^1.0.3",
